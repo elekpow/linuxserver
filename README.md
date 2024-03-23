@@ -15,6 +15,7 @@ sudo chown root:"domain users" /mnt/disk2/
 
 
 #samba
+```
 # Global parameters
 [global]
         disable spoolss = Yes
@@ -50,7 +51,7 @@ sudo chown root:"domain users" /mnt/disk2/
         path = /mnt/disk2
         valid users = "@domain users"
         write list = "@domain users"        
-
+```
 `sudo systemctl restart smbd.service`
 
 sudo ls -la /mnt/disk2
