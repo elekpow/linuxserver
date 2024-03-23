@@ -61,3 +61,5 @@ ProxMox
 `sudo getfacl /mnt/disk2/testdir`
 
 
+`netstat -plaunt | egrep "ntp|bind|named|samba|?mbd"`
+
