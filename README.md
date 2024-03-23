@@ -88,3 +88,25 @@ wbinfo --getdcname=DOMAIN
 net ads info
 
 ```
+
+#proxmox
+
+*mount hdd *
+
+`ls -l /dev/disk/by-uuid`
+`ce1614aa-da11-4cdf-8cef-cf86b0f92804 -> ../../vda`
+`sudo blkid /dev/vda`
+
+sudo nano /etc/fstab
+UUID=ce1614aa-da11-4cdf-8cef-cf86b0f92804       /mnt/disk2      ext4    defaults,acl 0 1
+
+
+
+
+
+
+
+
+
+
+
