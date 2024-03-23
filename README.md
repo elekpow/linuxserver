@@ -63,3 +63,14 @@ ProxMox
 
 `netstat -plaunt | egrep "ntp|bind|named|samba|?mbd|krb5kdc"`
 
+
+```
+sudo service winbind stop
+sudo service smbd stop
+sudo net cache flush
+sudo rm -f /var/lib/samba/*.tdb
+sudo rm -f /var/lib/samba/group_mapping.ldb
+sudo systemctl start winbind
+sudo systemctl start smbd
+```
+
