@@ -87,6 +87,8 @@ wbinfo --getdcname=DOMAIN
 ```
 net ads info
 
+net ads join -U administrator -D DOMAIN -S server1
+
 ```
 
 #proxmox
