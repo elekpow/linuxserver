@@ -55,7 +55,10 @@ ProxMox
 ```
 
 
-`sudo systemctl restart smbd.service`
+```
+sudo systemctl restart smbd.service
+sudo systemctl restart smbd nmbd winbind
+```
 
 `sudo ls -la /mnt/disk2`
 `sudo getfacl /mnt/disk2/testdir`
@@ -73,4 +76,6 @@ sudo rm -f /var/lib/samba/group_mapping.ldb
 sudo systemctl start winbind
 sudo systemctl start smbd
 ```
+
+
 
