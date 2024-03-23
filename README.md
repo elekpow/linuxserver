@@ -1,17 +1,17 @@
 # linuxserver
 
 Подключеный диск
-sudo mke2fs -t ext4 -L DATA -m 0 /dev/sdb1
+`sudo mke2fs -t ext4 -L DATA -m 0 /dev/sdb1`
 
 ProxMox
 пробросить диск по UUID:
-qm set 119 -virtio2 /dev/disk/by-uuid/0b56138b-6124-4ec4-a7a3-7c503516a65c
+`qm set 119 -virtio2 /dev/disk/by-uuid/0b56138b-6124-4ec4-a7a3-7c503516a65c`
 
 Создаем общую папку
 
 Права для доменной сети:
-chmod -R 0775 /mnt/disk2/
-sudo chown root:"domain users" /mnt/disk2/
+`chmod -R 0775 /mnt/disk2/`
+`sudo chown root:"domain users" /mnt/disk2/`
 
 
 #samba
@@ -57,7 +57,7 @@ sudo chown root:"domain users" /mnt/disk2/
 
 `sudo systemctl restart smbd.service`
 
-sudo ls -la /mnt/disk2
-sudo getfacl /mnt/disk2/testdir
+`sudo ls -la /mnt/disk2`
+`sudo getfacl /mnt/disk2/testdir`
 
 
