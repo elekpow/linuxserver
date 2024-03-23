@@ -78,4 +78,13 @@ sudo systemctl start smbd
 ```
 
 
+```
+wbinfo --online-status
+wbinfo --getdcname=DOMAIN
 
+```
+
+```
+net ads info
+
+```
