@@ -10,41 +10,43 @@ sudo hostnamectl set-hostname dc1.myserver.local
 ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"
 
 **stop services**
-sudo systemctl stop smbd nmbd winbind krb5-kdc
+`sudo systemctl stop smbd nmbd winbind krb5-kdc`
+
 **mask services**
-sudo systemctl mask smbd nmbd winbind krb5-kdc
+`sudo systemctl mask smbd nmbd winbind krb5-kdc`
 
 
-sudo smbd -b | grep "CONFIGFILE"
-sudo rm -rf /etc/samba/smb.conf
+`sudo smbd -b | grep "CONFIGFILE"`
+`sudo rm -rf /etc/samba/smb.conf`
 
-sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"
+`sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
 
+```
 sudo rm -rf /run/samba
 sudo rm -rf /var/lib/samba
 sudo rm -rf /var/cache/samba
 sudo rm -rf /var/lib/samba/private
-
-sudo rm /etc/krb5.conf
+```
+`sudo rm /etc/krb5.conf`
 
 --очистить данные--
 # sudo mkdir -p /var/lib/samba/sysvol
 
-sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9
-sudo apt install smbclient
+`sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9`
+`sudo apt install smbclient`
 
  # автоматическое конфигурирование сервера
  
-sudo samba-tool domain provision --use-rfc2307 --interactive
+`sudo samba-tool domain provision --use-rfc2307 --interactive`
 
 **SAMBA_INTERNAL**
-samba-tool domain provision --realm=myserver.local --domain=myserver --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8" --server-role=dc --use-rfc2307
+`samba-tool domain provision --realm=myserver.local --domain=myserver --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8" --server-role=dc --use-rfc2307`
 
 **BIND9_DLZ**
-sudo samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=myserver.local --domain=myserver --adminpass='Pa$$word'
+`sudo samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=myserver.local --domain=myserver --adminpass='Pa$$word'`
 
 
- sudo systemctl enable --now samba
+`sudo systemctl enable --now samba`
 
 # bind9
 sudo apt-get -y install dnsutils
