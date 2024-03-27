@@ -28,7 +28,7 @@ sudo smbd -b | grep "CONFIGFILE"
 
 
 sudo rm -rf /etc/samba/smb.conf
-sudo rm -rf /run/samba /var/lib/samba /var/cache/samba /var/lib/samba/private`
+sudo rm -rf /run/samba /var/lib/samba /var/cache/samba /var/lib/samba/private
 sudo rm /etc/krb5.conf
 ```
 
