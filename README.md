@@ -37,24 +37,20 @@ sudo mkdir -p /var/lib/samba/sysvol;
 `sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9`
 `sudo apt install smbclient`
 
- # автоматическое конфигурирование сервера
+**автоматическое конфигурирование сервера**
  
 `sudo samba-tool domain provision --use-rfc2307 --interactive`
 
 **SAMBA_INTERNAL**
 
-```
-samba-tool domain provision --realm=myserver.local --domain=myserver --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8" --server-role=dc --use-rfc2307
-```
+`sudo samba-tool domain provision --realm=myserver.local --domain=myserver --use-rfc2307 --server-role=dc --option="dns forwarder=8.8.8.8" --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL`
 
 **BIND9_DLZ**
-```
-sudo samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=myserver.local --domain=myserver --adminpass='Pa$$word'
-```
+`sudo samba-tool domain provision --realm=myserver.local --domain=myserver --use-rfc2307 --server-role=dc --adminpass='Pa$$word' --dns-backend=BIND9_DLZ`
 
 `sudo systemctl enable --now samba`
 
-# bind9
+**bind9**
 `sudo apt-get -y install dnsutils`
 
 `sudo systemctl start bind9`
