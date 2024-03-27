@@ -22,12 +22,15 @@ sudo hostnamectl set-hostname dc1.myserver.local
 
 **очистить данные**
 
-`sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
-`sudo smbd -b | grep "CONFIGFILE"`
+```
+sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"
+sudo smbd -b | grep "CONFIGFILE"
 
-`sudo rm -rf /etc/samba/smb.conf`
-`sudo rm -rf /run/samba /var/lib/samba /var/cache/samba /var/lib/samba/private`
-`sudo rm /etc/krb5.conf`
+```
+sudo rm -rf /etc/samba/smb.conf
+sudo rm -rf /run/samba /var/lib/samba /var/cache/samba /var/lib/samba/private`
+sudo rm /etc/krb5.conf
+```
 
 `sudo mkdir -p /var/lib/samba/sysvol`
 
