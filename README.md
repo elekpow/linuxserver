@@ -16,26 +16,19 @@ sudo hostnamectl set-hostname dc1.myserver.local
 `sudo systemctl mask smbd nmbd winbind krb5-kdc`
 
 
-`sudo smbd -b | grep "CONFIGFILE"`
-`sudo rm -rf /etc/samba/smb.conf`
-
-`sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
-
 **очистить данные**
-```
-sudo rm -rf /run/samba;
-sudo rm -rf /var/lib/samba;
-sudo rm -rf /var/cache/samba;
-sudo rm -rf /var/lib/samba/private;
-sudo mkdir -p /var/lib/samba/sysvol;
-```
+`sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
+`sudo smbd -b | grep "CONFIGFILE"`
 
+`sudo rm -rf /etc/samba/smb.conf`
+`sudo rm -rf /run/samba /var/lib/samba /var/cache/samba /var/lib/samba/private`
 `sudo rm /etc/krb5.conf`
 
+`sudo mkdir -p /var/lib/samba/sysvol`
 
+**install samba** 
 
-`sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9`
-`sudo apt install smbclient`
+`sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9`
 
 **автоматическое конфигурирование сервера**
  
