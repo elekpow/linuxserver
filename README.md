@@ -166,7 +166,10 @@ Winbind должен выдавать информацию о пользоват
 `sudo wbinfo -g`
 
 
-
+-----------------------
+```
+sudo samba-tool user add danielk --unix-home=/home/danielk --login-shell=/bin/bash --gecos 'Daniel K.' --given-name=Daniel --surname='Kühl' --mail-address='danielk@onda.org'
+```
 
 # linuxserver
 
