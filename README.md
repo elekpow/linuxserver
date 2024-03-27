@@ -7,7 +7,7 @@ sudo hostnamectl set-hostname dc1.myserver.local
 192.168.55.102 DC1.myserver.local DC1
 ```
 
-ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"
+`ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"`
 
 **stop services**
 `sudo systemctl stop smbd nmbd winbind krb5-kdc`
@@ -55,11 +55,11 @@ sudo mkdir -p /var/lib/samba/sysvol;
 
 `sudo systemctl start bind9`
 
-```
-nslookup 127.0.0.1
 
-```
-sudo nano  /etc/bind/named.conf.options  
+`nslookup 127.0.0.1`
+
+
+`sudo nano  /etc/bind/named.conf.options  `
 
 ```
 options {
@@ -75,16 +75,16 @@ dnssec-validation no;
 
 ```
 
-//samba-tool dns zonecreate myserver.local 2.0.10.in-addr.arpa -U Administrator
+`//samba-tool dns zonecreate myserver.local 2.0.10.in-addr.arpa -U Administrator`
 
 # Настройка автоматического запуска доменной службы Samba
-sudo systemctl unmask samba-ad-dc
-sudo systemctl enable samba-ad-dc
+`sudo systemctl unmask samba-ad-dc`
+`sudo systemctl enable samba-ad-dc`
 
 
 
 # samba ad dc
-/etc/samba/smb.conf
+`/etc/samba/smb.conf`
 
 ```
 # Global parameters
@@ -114,9 +114,9 @@ sudo systemctl enable samba-ad-dc
         read only = No
 ```
 # krb5
-sudo cp /var/lib/samba/private/krb5.conf /etc/
+`sudo cp /var/lib/samba/private/krb5.conf /etc/`
 
---/etc/krb5.conf--
+**/etc/krb5.conf**
 
 ```
 [libdefaults]
@@ -141,7 +141,7 @@ MYSERVER.LOCAL = {
         myserver.local = MYSERVER.LOCAL
 
 ```
-kinit Administrator
+`kinit Administrator`
 
 
 
