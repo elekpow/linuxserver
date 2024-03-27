@@ -46,11 +46,11 @@ sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-kr
 
 **SAMBA_INTERNAL**
 
-`sudo samba-tool domain provision --realm=myserver.local --domain=myserver --use-rfc2307 --server-role=dc --option="dns forwarder=8.8.8.8" --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL`
+`sudo samba-tool domain provision --use-rfc2307 --server-role=dc --realm=myserver.local --domain=myserver --option="dns forwarder=8.8.8.8" --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL`
 
 **BIND9_DLZ**
 
-`sudo samba-tool domain provision --realm=myserver.local --domain=myserver --use-rfc2307 --server-role=dc --adminpass='Pa$$word' --dns-backend=BIND9_DLZ`
+`sudo samba-tool domain provision --use-rfc2307 --server-role=dc --realm=myserver.local --domain=myserver --option="dns forwarder=8.8.8.8" --adminpass='Pa$$word' --dns-backend=BIND9_DLZ`
 
 `sudo systemctl enable --now samba`
 `sudo systemctl start bind9`
