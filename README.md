@@ -112,6 +112,10 @@ dnssec-validation no;
 ## users and group
         winbind enum users = yes
         winbind enum groups = yes
+        winbind refresh tickets = yes
+# Диапазоны идентификаторов для виртуальных пользователей и групп.
+        dmap config * : range = 10000-20000
+        idmap config * : backend = tdb
 [sysvol]
         path = /var/lib/samba/sysvol
         read only = No
@@ -152,6 +156,14 @@ MYSERVER.LOCAL = {
 
 
 
+Winbind должен выдавать информацию о пользователях и группах
+
+`sudo getent passwd`
+`sudo getent group`
+
+`sudo wbinfo -t`
+`sudo wbinfo -u`
+`sudo wbinfo -g`
 
 
 
