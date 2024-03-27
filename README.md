@@ -82,7 +82,7 @@ sudo systemctl unmask samba-ad-dc
 sudo systemctl enable samba-ad-dc
 ```
 
-**samba ad dc /etc/samba/smb.conf **
+**samba ad dc  **
 
 `sudo nano /etc/samba/smb.conf `
 
@@ -124,6 +124,12 @@ sudo systemctl enable samba-ad-dc
         path = /var/lib/samba/sysvol/myserver.local/scripts
         read only = No
 ```
+
+```
+sudo systemctl restart samba-ad-dc
+sudo systemctl status samba-ad-dc
+```
+
 # krb5
 `sudo cp /var/lib/samba/private/krb5.conf /etc/`
 
