@@ -21,16 +21,18 @@ ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"
 
 `sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
 
+**очистить данные**
 ```
 sudo rm -rf /run/samba;
 sudo rm -rf /var/lib/samba;
 sudo rm -rf /var/cache/samba;
 sudo rm -rf /var/lib/samba/private;
+sudo mkdir -p /var/lib/samba/sysvol;
 ```
+
 `sudo rm /etc/krb5.conf`
 
---очистить данные--
-# sudo mkdir -p /var/lib/samba/sysvol
+
 
 `sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9`
 `sudo apt install smbclient`
