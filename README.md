@@ -7,12 +7,16 @@ sudo hostnamectl set-hostname dc1.myserver.local
 192.168.55.102 DC1.myserver.local DC1
 ```
 
+**services**
+
 `ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"`
 
 **stop services**
+
 `sudo systemctl stop smbd nmbd winbind krb5-kdc`
 
 **mask services**
+
 `sudo systemctl mask smbd nmbd winbind krb5-kdc`
 
 
