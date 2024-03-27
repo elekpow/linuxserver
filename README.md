@@ -76,14 +76,15 @@ dnssec-validation no;
 
 `//samba-tool dns zonecreate myserver.local 2.0.10.in-addr.arpa -U Administrator`
 
-# Настройка автоматического запуска доменной службы Samba
-`sudo systemctl unmask samba-ad-dc`
-`sudo systemctl enable samba-ad-dc`
+**Настройка автоматического запуска доменной службы Samba**
+```
+sudo systemctl unmask samba-ad-dc
+sudo systemctl enable samba-ad-dc
+```
 
+**samba ad dc /etc/samba/smb.conf **
 
-
-# samba ad dc
-`/etc/samba/smb.conf`
+`sudo nano /etc/samba/smb.conf `
 
 ```
 # Global parameters
