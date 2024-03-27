@@ -22,10 +22,10 @@ ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"
 `sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
 
 ```
-sudo rm -rf /run/samba
-sudo rm -rf /var/lib/samba
-sudo rm -rf /var/cache/samba
-sudo rm -rf /var/lib/samba/private
+sudo rm -rf /run/samba;
+sudo rm -rf /var/lib/samba;
+sudo rm -rf /var/cache/samba;
+sudo rm -rf /var/lib/samba/private;
 ```
 `sudo rm /etc/krb5.conf`
 
