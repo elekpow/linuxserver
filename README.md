@@ -36,9 +36,7 @@ sudo rm /etc/krb5.conf
 
 **install samba**
 
-```
-sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9 dnsutils
-```
+`sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9 dnsutils`
 
 **автоматическое конфигурирование сервера**
  
