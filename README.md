@@ -31,6 +31,7 @@ sudo rm /etc/krb5.conf
 # sudo mkdir -p /var/lib/samba/sysvol
 
 sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9
+sudo apt install smbclient
 
  # автоматическое конфигурирование сервера
  
@@ -107,6 +108,12 @@ sudo systemctl enable samba-ad-dc
         path = /var/lib/samba/sysvol/myserver.local/scripts
         read only = No
 ```
+# krb5
+sudo cp /var/lib/samba/private/krb5.conf /etc/
+
+
+
+
 
 
 # linuxserver
