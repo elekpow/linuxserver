@@ -111,6 +111,34 @@ sudo systemctl enable samba-ad-dc
 # krb5
 sudo cp /var/lib/samba/private/krb5.conf /etc/
 
+--/etc/krb5.conf--
+
+```
+[libdefaults]
+        default_realm = MYSERVER.LOCAL
+        dns_lookup_realm = false
+        dns_lookup_kdc = true
+        ticket_lifetime = 24h
+        renew_lifetime = 7d
+        forwardable = true
+        rdns = false
+
+[realms]
+MYSERVER.LOCAL = {
+        kdc = dc1.myserver.local
+        default_domain = myserver.local
+        admin_server = dc1.myserver.local
+}
+
+[domain_realm]
+        dc1 = MYSERVER.LOCAL
+        .myserver.local = MYSERVER.LOCAL
+        myserver.local = MYSERVER.LOCAL
+
+```
+kinit Administrator
+
+
 
 
 
