@@ -42,21 +42,26 @@ sudo mkdir -p /var/lib/samba/sysvol;
 `sudo samba-tool domain provision --use-rfc2307 --interactive`
 
 **SAMBA_INTERNAL**
-`samba-tool domain provision --realm=myserver.local --domain=myserver --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8" --server-role=dc --use-rfc2307`
+
+```
+samba-tool domain provision --realm=myserver.local --domain=myserver --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8" --server-role=dc --use-rfc2307
+```
 
 **BIND9_DLZ**
-`sudo samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=myserver.local --domain=myserver --adminpass='Pa$$word'`
-
+```
+sudo samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=myserver.local --domain=myserver --adminpass='Pa$$word'
+```
 
 `sudo systemctl enable --now samba`
 
 # bind9
-sudo apt-get -y install dnsutils
+`sudo apt-get -y install dnsutils`
 
-sudo systemctl start bind9
+`sudo systemctl start bind9`
 
 ```
 nslookup 127.0.0.1
+
 ```
 sudo nano  /etc/bind/named.conf.options  
 
