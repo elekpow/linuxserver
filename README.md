@@ -1,3 +1,114 @@
+# DC1
+sudo hostnamectl set-hostname dc1.myserver.local
+
+**/etc/hosts**
+```
+127.0.0.1 localhost.localdomain localhost
+192.168.55.102 DC1.myserver.local DC1
+```
+
+ps ax | egrep "samba|smbd|nmbd|winbindd|rkb5-kdc"
+
+**stop services**
+sudo systemctl stop smbd nmbd winbind krb5-kdc
+**mask services**
+sudo systemctl mask smbd nmbd winbind krb5-kdc
+
+
+sudo smbd -b | grep "CONFIGFILE"
+sudo rm -rf /etc/samba/smb.conf
+
+sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"
+
+sudo rm -rf /run/samba
+sudo rm -rf /var/lib/samba
+sudo rm -rf /var/cache/samba
+sudo rm -rf /var/lib/samba/private
+
+sudo rm /etc/krb5.conf
+
+--очистить данные--
+# sudo mkdir -p /var/lib/samba/sysvol
+
+sudo apt install samba winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9
+
+ # автоматическое конфигурирование сервера
+ 
+sudo samba-tool domain provision --use-rfc2307 --interactive
+
+**SAMBA_INTERNAL**
+samba-tool domain provision --realm=myserver.local --domain=myserver --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL --option="dns forwarder=8.8.8.8" --server-role=dc --use-rfc2307
+
+**BIND9_DLZ**
+sudo samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=myserver.local --domain=myserver --adminpass='Pa$$word'
+
+
+ sudo systemctl enable --now samba
+
+# bind9
+sudo apt-get -y install dnsutils
+
+sudo systemctl start bind9
+
+```
+nslookup 127.0.0.1
+```
+sudo nano  /etc/bind/named.conf.options  
+
+```
+options {
+        directory "/var/cache/bind";
+listen-on port 53 { 127.0.0.1; 192.168.55.102; };
+allow-query     { any; };
+allow-recursion { 127.0.0.0/8; 192.168.55.0/24; };
+allow-transfer { none; };
+forwarders { 77.88.8.8; 8.8.8.8; };
+dnssec-validation no;
+ listen-on-v6 { none; };
+};
+
+```
+
+//samba-tool dns zonecreate myserver.local 2.0.10.in-addr.arpa -U Administrator
+
+# Настройка автоматического запуска доменной службы Samba
+sudo systemctl unmask samba-ad-dc
+sudo systemctl enable samba-ad-dc
+
+
+
+# samba ad dc
+/etc/samba/smb.conf
+
+```
+# Global parameters
+[global]
+        dns forwarder = 8.8.8.8
+        netbios name = DC1
+        realm = MYSERVER.LOCAL
+        server role = active directory domain controller
+        workgroup = MYSERVER
+        idmap_ldb:use rfc2307 = yes
+## модуль acl_xattr - Windows ACL (Access Control List)
+        vfs objects = acl_xattr
+        map acl inherit = yes
+        store dos attributes = yes
+## dns update
+        allow dns updates = nonsecure
+        dns update command = /usr/bin/nsupdate -g
+## schema Samba AD (Active Directory)
+        dsdb:schema update allowed = true
+
+[sysvol]
+        path = /var/lib/samba/sysvol
+        read only = No
+
+[netlogon]
+        path = /var/lib/samba/sysvol/myserver.local/scripts
+        read only = No
+```
+
+
 # linuxserver
 
 Подключеный диск
