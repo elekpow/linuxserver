@@ -38,6 +38,7 @@ sudo rm /etc/krb5.conf
 
 `sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9 dnsutils`
 
+---------------------------------------------
 **автоматическое конфигурирование сервера**
  
 `sudo samba-tool domain provision --use-rfc2307 --interactive`
@@ -49,6 +50,8 @@ sudo rm /etc/krb5.conf
 **BIND9_DLZ**
 
 `sudo samba-tool domain provision --use-rfc2307 --server-role=dc --realm=myserver.local --domain=myserver --option="dns forwarder=8.8.8.8" --adminpass='Pa$$word' --dns-backend=BIND9_DLZ`
+
+---------------------------------------
 
 `sudo systemctl enable --now samba`
 `sudo systemctl start bind9`
