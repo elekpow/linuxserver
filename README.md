@@ -104,7 +104,14 @@ dnssec-validation no;
         dns update command = /usr/bin/nsupdate -g
 ## schema Samba AD (Active Directory)
         dsdb:schema update allowed = true
-
+## service winbind
+        template shell = /bin/bash
+        winbind use default domain = true
+        winbind offline logon = false
+        winbind nss info = rfc2307
+## users and group
+        winbind enum users = yes
+        winbind enum groups = yes
 [sysvol]
         path = /var/lib/samba/sysvol
         read only = No
