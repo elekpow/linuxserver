@@ -21,6 +21,7 @@ sudo hostnamectl set-hostname dc1.myserver.local
 
 
 **очистить данные**
+
 `sudo smbd -b | egrep "LOCKDIR|STATEDIR|CACHEDIR|PRIVATE_DIR"`
 `sudo smbd -b | grep "CONFIGFILE"`
 
@@ -32,7 +33,7 @@ sudo hostnamectl set-hostname dc1.myserver.local
 
 **install samba** 
 
-`sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9`
+`sudo apt install samba smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user krb5-kdc bind9 dnsutils`
 
 **автоматическое конфигурирование сервера**
  
@@ -43,19 +44,14 @@ sudo hostnamectl set-hostname dc1.myserver.local
 `sudo samba-tool domain provision --realm=myserver.local --domain=myserver --use-rfc2307 --server-role=dc --option="dns forwarder=8.8.8.8" --adminpass='Pa$$word' --dns-backend=SAMBA_INTERNAL`
 
 **BIND9_DLZ**
+
 `sudo samba-tool domain provision --realm=myserver.local --domain=myserver --use-rfc2307 --server-role=dc --adminpass='Pa$$word' --dns-backend=BIND9_DLZ`
 
 `sudo systemctl enable --now samba`
-
-**bind9**
-`sudo apt-get -y install dnsutils`
-
 `sudo systemctl start bind9`
 
 
 `nslookup 127.0.0.1`
-
-
 `sudo nano  /etc/bind/named.conf.options  `
 
 ```
