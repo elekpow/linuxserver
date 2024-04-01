@@ -291,9 +291,9 @@ UUID=ce1614aa-da11-4cdf-8cef-cf86b0f92804       /mnt/disk2      ext4    defaults
 
 samba_dnsupdate --verbose --all-names
 
-sudo samba-tool dns query localhost uati.local @ ALL -U administratopior%IkEa90210Kd
+sudo samba-tool dns query localhost uati.local @ ALL -U administratopior
 
-sudo samba-tool dns query server1.uati.local uati.local @ ALL -U administrator%IkEa90210Kd
+sudo samba-tool dns query server1.uati.local uati.local @ ALL -U administrator
 
 ------------------------------------------------------------------
 
@@ -301,31 +301,30 @@ sudo samba-tool dns zonelist localhost -U administrator%IkEa90210Kd
 
 sudo samba-tool dns query localhost uati.local @ A -U administrator%IkEa90210Kd
 
-sudo samba-tool dns delete localhost uati.local fs1 A 10.100.101.174 -U administrator%IkEa90210Kd
+sudo samba-tool dns delete localhost uati.local fs1 A 10.100.101.174 -U administrator
 
-sudo samba-tool dns cleanup localhost uati.local -U administrator%IkEa90210Kd
-
-----------------
-
-sudo samba-tool dns zoneinfo localhost  uati.local -U administrator%IkEa90210Kd
+sudo samba-tool dns cleanup localhost uati.local -U administrator
 
 ----------------
 
-sudo samba-tool dns zonecreate localhost 56.168.192.in-addr.arpa -U administrator%IkEa90210Kd
+sudo samba-tool dns zoneinfo localhost  uati.local -U administrator
+
+----------------
+
+sudo samba-tool dns zonecreate localhost 56.168.192.in-addr.arpa -U administrator
 
 samba-tool dns zonedelete localhost
 
-sudo samba-tool dns zonecreate dc2.uati.local 56.168.192.in-addr.arpa -U administrator%IkEa90210Kd
+sudo samba-tool dns zonecreate dc2.uati.local 56.168.192.in-addr.arpa -U administrator
 
-sudo samba-tool dns add dc2.uati.local 56.168.192.in-addr.arpa 170 PTR dc2.uati.local -U administrator%IkEa90210Kd
+sudo samba-tool dns add dc2.uati.local 56.168.192.in-addr.arpa 170 PTR dc2.uati.local -U administrator
 
-sudo samba-tool dns add dc2.uati.local uati.local _demo._tcp SRV 'demo.uati.local 8080 0 100' -U administrator%IkEa90210Kd
-
+sudo samba-tool dns add dc2.uati.local uati.local _demo._tcp SRV 'demo.uati.local 8080 0 100' -U administrator
 
 -------------------------------------
-sudo samba-tool dns query localhost _msdcs.uati.local @ A -U administrator%IkEa90210Kd
+sudo samba-tool dns query localhost _msdcs.uati.local @ A -U administrator
 
-sudo samba-tool dns add dc2.uati.local _msdcs.uati.local dc2 SRV dc2.uati.local -U administrator%IkEa90210Kd
+sudo samba-tool dns add dc2.uati.local _msdcs.uati.local dc2 SRV dc2.uati.local -U administrator
 
 
 
