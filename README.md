@@ -297,9 +297,9 @@ sudo samba-tool dns query server1.uati.local uati.local @ ALL -U administrator
 
 ------------------------------------------------------------------
 
-sudo samba-tool dns zonelist localhost -U administrator%IkEa90210Kd
+sudo samba-tool dns zonelist localhost -U administrator
 
-sudo samba-tool dns query localhost uati.local @ A -U administrator%IkEa90210Kd
+sudo samba-tool dns query localhost uati.local @ A -U administrator
 
 sudo samba-tool dns delete localhost uati.local fs1 A 10.100.101.174 -U administrator
 
@@ -326,34 +326,14 @@ sudo samba-tool dns query localhost _msdcs.uati.local @ A -U administrator
 
 sudo samba-tool dns add dc2.uati.local _msdcs.uati.local dc2 SRV dc2.uati.local -U administrator
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 sudo samba-tool dns update dc2.uati.local uati.local demo A 192.168.0.55 192.168.0.66 -U administrator
-
 
 update (samba-tool): SRV _ldap._tcp.Default-First-Site-Name._sites.ForestDnsZones.uati.local dc2.uati.local 389
 
 
+samba-tool dns delete localhost  uati.local dc2 A 10.100.101.170 -U administrator
 
-samba-tool dns delete localhost  uati.local dc2 A 10.100.101.170 -U administrator%IkEa90210Kd
-
-samba-tool dns delete server1.uati.local  uati.local dc2 A 10.100.101.170 -U administrator%IkEa90210Kd
-
-
-
+samba-tool dns delete server1.uati.local  uati.local dc2 A 10.100.101.170 -U administrator
 
 
 
@@ -372,10 +352,6 @@ samba-tool dns zonecreate localhost 56.168.192.in-addr.arpa
 
 
 
-
-
-
-
 samba-tool user add dhcp --random-password
 samba-tool group addmembers DnsUpdateProxy dhcp
 sudo samba-tool domain exportkeytab --princ 'dhcp@UATI' -N /var/lib/dhcp/dhcp.keytab # вместо REALM укажите свой
@@ -388,14 +364,6 @@ samba-tool group addmembers DnsUpdateProxy dhcp
 sudo samba-tool domain exportkeytab --princ 'dhcp@UATI' -N /var/lib/dhcp/dhcp.keytab # вместо REALM укажите свой
 ls -l /var/lib/dhcp/dhcp.keytab
 chown dhcpd:dhcpd /var/lib/dhcp/dhcp.keytab
-
-
-
-
-
-
-
-
 
 
 
